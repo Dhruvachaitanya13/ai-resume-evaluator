@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Resume Evaluator</title>
+</head>
+<body>
+    <h1>Upload Resume</h1>
+    <form action="/" method="POST" enctype="multipart/form-data">
+        <input type="file" name="resume" required>
+        <br><br>
+        <textarea name="job_desc" placeholder="Paste job description here..." required></textarea>
+        <br><br>
+        <input type="submit" value="Evaluate">
+    </form>
+    <h2>Extracted Text:</h2>
+    <p>{{ text }}</p>
+    <h2>Extracted Skills:</h2>
+    <p>{{ skills }}</p>
+    <h2>Matching Score:</h2>
+    <p>{{ score }}</p>
+</body>
+</html>
+
