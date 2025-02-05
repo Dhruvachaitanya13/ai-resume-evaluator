@@ -1,6 +1,4 @@
 import spacy
-nlp = spacy.load("en_core_web_sm")
-import spacy
 import subprocess
 
 # Ensure spaCy model is installed
