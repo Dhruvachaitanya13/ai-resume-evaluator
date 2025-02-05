@@ -7,3 +7,5 @@ nltk
 transformers
 scikit-learn
 openai
+spacy
+spacy
