@@ -1,23 +1,13 @@
-from flask import Flask, request, render_template
-import src.resume_parser as rp
-import src.matching as match
+import spacy
+nlp = spacy.load("en_core_web_sm")
+import spacy
+import subprocess
 
-app = Flask(__name__)
-
-@app.route("/", methods=["GET", "POST"])
-def index():
-    if request.method == "POST":
-        file = request.files["resume"]
-        job_desc = request.form["job_desc"]
-
-        extracted_text = rp.extract_text(file)
-        extracted_skills = rp.extract_skills(extracted_text)
-        score = match.calculate_similarity(extracted_text, job_desc)
-
-        return render_template("index.html", text=extracted_text, skills=extracted_skills, score=score)
-
-    return render_template("index.html", text="", skills=[], score="")
-
-if __name__ == "__main__":
-    app.run(debug=True)
+# Ensure spaCy model is installed
+try:
+    nlp = spacy.load("en_core_web_sm")
+except OSError:
+    print("Downloading spaCy model...")
+    subprocess.run(["python", "-m", "spacy", "download", "en_core_web_sm"])
+    nlp = spacy.load("en_core_web_sm")
 
